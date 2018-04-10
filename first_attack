@@ -1,7 +1,7 @@
 workload=com.yahoo.ycsb.workloads.CoreWorkload
 
 recordcount=1000
-operationcount=2000000
+operationcount=3000000
 
 insertstart=0
 fieldcount=10
@@ -14,13 +14,13 @@ table=Test
 
 fieldlengthdistribution=constant
 
-readproportion=0.8
-updateproportion=0.15
-insertproportion=0.05
+readproportion=0.95
+updateproportion=0.05
+insertproportion=0
 
 readmodifywriteproportion=0
 scanproportion=0
-maxscanlength=1000
+maxscanlength=100
 scanlengthdistribution=uniform
 insertorder=hashed
 requestdistribution=zipfian
@@ -28,5 +28,5 @@ hotspotdatafraction=0.2
 hotspotopnfraction=0.8
 
 measurementtype=histogram
-histogram.buckets=1000
-timeseries.granularity=1000
+histogram.buckets=100
+timeseries.granularity=100
