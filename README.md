@@ -6,13 +6,13 @@ DynamoDBAutoscalingTest
 ## Check
 
 ```bash
-$ for f in $(cat tables.txt); do echo "$f"; sh get-scale --t "$f"; done
+$ for f in $(cat tables.txt); do echo "$f"; sh get-scale -t "$f"; done
 ```
 
 ## Apply
 
 ```bash
-$ for f in $(cat tables.txt); do echo "$f"; sh set-auto-scale --t "$f"; done
+$ for f in $(cat tables.txt); do echo "$f"; sh set-auto-scale -t -s 5 -m 100 "$f"; done
 ```
 
 # TEST
