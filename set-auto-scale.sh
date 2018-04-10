@@ -2,11 +2,17 @@
 
 set -xeu
 
-while getopts ':t:h' args; do
+while getopts ':t:s:m:h' args; do
   case "$args" in
     t)
       tablename="$OPTARG"
       table_path="table/${tablename}"
+      ;;
+    s)
+      min="$OPTARG"
+      ;;
+    m)
+      max="$OPTARG"
       ;;
     h)
       usage
@@ -23,15 +29,15 @@ aws application-autoscaling register-scalable-target \
   --service-namespace dynamodb \
   --resource-id "$table_path" \
   --scalable-dimension "dynamodb:table:ReadCapacityUnits" \
-  --min-capacity 5 \
-  --max-capacity 100
+  --min-capacity $min \
+  --max-capacity $max
 
 aws application-autoscaling register-scalable-target \
   --service-namespace dynamodb \
   --resource-id "$table_path" \
   --scalable-dimension "dynamodb:table:WriteCapacityUnits" \
-  --min-capacity 5 \
-  --max-capacity 100
+  --min-capacity $min \
+  --max-capacity $max
 
 aws application-autoscaling put-scaling-policy \
   --service-namespace dynamodb \
